@@ -7,6 +7,9 @@ resource "aws_route_table" "public" {
     tags = {
       Name = "public-rt"
     }
+    depends_on = [
+      aws_internet_gateway.igw
+    ]
 }
 
 resource "aws_route_table" "private" {
@@ -18,6 +21,9 @@ resource "aws_route_table" "private" {
     tags = {
         Name = "private-rt"
     }
+    depends_on = [
+      aws_nat_gateway.ngw
+    ]
 }
 
 resource "aws_route_table_association" "pub1" {

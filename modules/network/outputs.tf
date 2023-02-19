@@ -17,3 +17,7 @@ output "priv-subnet1-id" {
 output "priv-subnet2-id" {
     value = aws_subnet.private-sub-2.id
 }
+
+output "ssh-sg" {
+    value = aws_security_group.ssh-only.id
+}
