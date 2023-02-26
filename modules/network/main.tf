@@ -47,13 +47,20 @@ resource "aws_subnet" "private-sub-2" {
     }
 }
 
-resource "aws_security_group" "ssh-only" {
-    name = "ssh_only"
+resource "aws_security_group" "ssh-http" {
+    name = "ssh_http"
     vpc_id = aws_vpc.my-vpc.id
     ingress {
-        description = "public-ssh"
+        description = "ssh access"
         from_port = 22
         to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress {
+        description = "http access"
+        from_port = 80
+        to_port = 80
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
@@ -65,6 +72,28 @@ resource "aws_security_group" "ssh-only" {
         ipv6_cidr_blocks = ["::/0"]
     }
     tags = {
-      Name = "ssh_only"
+      Name = "ssh_http"
+    }
+}
+
+resource "aws_security_group" "ssh-private" {
+    name = "ssh_private"
+    vpc_id = aws_vpc.my-vpc.id
+    ingress {
+        description = "private ssh access"
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = [aws_vpc.my-vpc.cidr_block]
+    }
+    egress {
+        from_port        = 0
+        to_port          = 0
+        protocol         = "-1"
+        cidr_blocks      = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+    tags = {
+      Name = "ssh_private"
     }
 }
