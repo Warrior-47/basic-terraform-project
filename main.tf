@@ -17,6 +17,7 @@ resource "aws_instance" "pub-ec2" {
     instance_type = "t2.micro"
     key_name = aws_key_pair.ec2-key.key_name
     security_groups = [ module.network-module.ssh-http-sg ]
+    user_data = file("scripts/apache.sh")
 
     subnet_id = element(module.network-module.pub-subnet-ids, count.index)
     tags = {
