@@ -17,3 +17,7 @@ output "ssh-http-sg" {
 output "ssh-priv-sg" {
     value = aws_security_group.ssh-private.id
 }
+
+output "tg-arn" {
+    value = aws_lb_target_group.tg.arn
+}

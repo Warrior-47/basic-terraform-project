@@ -40,6 +40,6 @@ resource "aws_instance" "priv-ec2" {
 
 resource "aws_lb_target_group_attachment" "instance-attach" {
     count = 2
-    target_group_arn = aws_lb_target_group.tg.arn
+    target_group_arn = module.network-module.tg-arn
     target_id = element(aws_instance.pub-ec2, count.index).id
 }
