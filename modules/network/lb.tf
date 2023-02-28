@@ -2,8 +2,11 @@ resource "aws_lb" "alb" {
     name = "ALB"
     internal = false
     load_balancer_type = "application"
-    security_groups = [aws_security_group.ssh_http]
+    security_groups = [aws_security_group.ssh-http.id]
     subnets = [aws_subnet.public-sub-1.id, aws_subnet.public-sub-2.id]
+    depends_on = [
+      aws_subnet.public-sub-1, aws_subnet.public-sub-2
+    ]
 }
 
 resource "aws_lb_target_group" "tg" {
@@ -20,7 +23,7 @@ resource "aws_lb_target_group" "tg" {
 }
 
 resource "aws_lb_listener" "HTTP" {
-    load_balancer_arn = aws_lb.alb
+    load_balancer_arn = aws_lb.alb.arn
     port = 80
     protocol = "HTTP"
     default_action {
