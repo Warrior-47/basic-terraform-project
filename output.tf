@@ -3,5 +3,5 @@ output "apache-servers" {
 }
 
 output "dns" {
-  value = module.network-module.alb-dns-name
+    value = module.network-module.alb-dns-name
 }
