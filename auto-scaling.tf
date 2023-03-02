@@ -33,7 +33,7 @@ resource "aws_autoscaling_schedule" "bhor-shokal" {
     start_time = "2023-03-03T00:00:00Z"
     end_time = "2023-03-03T06:00:00Z"
     recurrence = "0 * * * *"
-    time_zone = "GMT+6"
+    time_zone = "Asia/Dhaka"
 }
 
 resource "aws_autoscaling_schedule" "shokal-to-bikal" {
@@ -45,7 +45,7 @@ resource "aws_autoscaling_schedule" "shokal-to-bikal" {
     start_time = "2023-03-03T06:00:00Z"
     end_time = "2023-03-03T18:00:00Z"
     recurrence = "0 * * * *"
-    time_zone = "GMT+6"
+    time_zone = "Asia/Dhaka"
 }
 
 resource "aws_autoscaling_schedule" "bikal-to-raat" {
@@ -57,5 +57,5 @@ resource "aws_autoscaling_schedule" "bikal-to-raat" {
     start_time = "2023-03-03T18:00:00Z"
     end_time = "2023-03-04T00:00:00Z"
     recurrence = "0 * * * *"
-    time_zone = "GMT+6"
+    time_zone = "Asia/Dhaka"
 }
