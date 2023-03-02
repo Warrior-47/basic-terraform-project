@@ -4,7 +4,7 @@ resource "aws_launch_template" "http-serv-temp" {
     instance_type = "t2.micro"
     key_name = aws_key_pair.ec2-key.key_name
     vpc_security_group_ids = [ module.network-module.ssh-http-sg ]
-    user_data = file("scripts/apache.sh")
+    user_data = filebase64("scripts/apache.sh")
 
     tags = {
       Name = "pub-test"
