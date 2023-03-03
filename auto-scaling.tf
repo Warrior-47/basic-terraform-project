@@ -30,8 +30,8 @@ resource "aws_autoscaling_schedule" "bhor-shokal" {
     min_size = 1
     max_size = 1
     desired_capacity = 1
-    start_time = "2023-03-03T00:00:00Z"
-    end_time = "2023-03-03T06:00:00Z"
+    start_time = "2023-03-20T00:00:00Z"
+    end_time = "2023-03-20T06:00:00Z"
     recurrence = "0 * * * *"
     time_zone = "Asia/Dhaka"
 }
@@ -42,8 +42,8 @@ resource "aws_autoscaling_schedule" "shokal-to-bikal" {
     min_size = 3
     max_size = 3
     desired_capacity = 3
-    start_time = "2023-03-03T06:00:00Z"
-    end_time = "2023-03-03T18:00:00Z"
+    start_time = "2023-03-20T06:00:00Z"
+    end_time = "2023-03-20T18:00:00Z"
     recurrence = "0 * * * *"
     time_zone = "Asia/Dhaka"
 }
@@ -54,8 +54,8 @@ resource "aws_autoscaling_schedule" "bikal-to-raat" {
     min_size = 1
     max_size = 1
     desired_capacity = 1
-    start_time = "2023-03-03T18:00:00Z"
-    end_time = "2023-03-04T00:00:00Z"
+    start_time = "2023-03-20T18:00:00Z"
+    end_time = "2023-03-21T00:00:00Z"
     recurrence = "0 * * * *"
     time_zone = "Asia/Dhaka"
 }

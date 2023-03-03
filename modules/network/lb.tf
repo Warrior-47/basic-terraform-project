@@ -3,9 +3,9 @@ resource "aws_lb" "alb" {
     internal = false
     load_balancer_type = "application"
     security_groups = [aws_security_group.ssh-http.id]
-    subnets = aws_subnet.public-subnets
+    subnets = aws_subnet.public-subnets.*.id
     depends_on = [
-      aws_subnet.public-sub-1, aws_subnet.public-sub-2
+      aws_subnet.public-subnets
     ]
 }
 
