@@ -3,11 +3,11 @@ output "vpc-id" {
 }
 
 output "pub-subnet-ids" {
-    value = [aws_subnet.public-sub-1.id, aws_subnet.public-sub-2.id]
+    value = aws_subnet.public-subnets.*.id
 }
 
 output "priv-subnet-ids" {
-    value = [aws_subnet.private-sub-1.id, aws_subnet.private-sub-2.id]
+    value = aws_subnet.private-subnets.*.id
 }
 
 output "ssh-http-sg" {

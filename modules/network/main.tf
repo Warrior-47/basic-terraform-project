@@ -9,41 +9,24 @@ resource "aws_vpc" "my-vpc" {
     }
 }
 
-resource "aws_subnet" "public-sub-1" {
+resource "aws_subnet" "public-subnets" {
+    count = length(var.pub-subs)
     vpc_id = aws_vpc.my-vpc.id
-    cidr_block = "10.0.0.0/24"
-    availability_zone = "us-west-2a"
+    cidr_block = element(var.pub-subs, count.index).cidr
+    availability_zone = element(var.pub-subs, count.index).availability_zone
     map_public_ip_on_launch = true
     tags = {
-        Name = "pub-sub-1"
+        Name = element(var.pub-subs, count.index).name
     }
 }
 
-resource "aws_subnet" "public-sub-2" {
+resource "aws_subnet" "private-subnets" {
+    count = length(var.priv-subs)
     vpc_id = aws_vpc.my-vpc.id
-    cidr_block = "10.0.1.0/24"
-    availability_zone = "us-west-2b"
-    map_public_ip_on_launch = true
+    cidr_block = element(var.priv-subs, count.index).cidr
+    availability_zone = element(var.priv-subs, count.index).availability_zone
     tags = {
-        Name = "pub-sub-2"
-    }
-}
-
-resource "aws_subnet" "private-sub-1" {
-    vpc_id = aws_vpc.my-vpc.id
-    cidr_block = "10.0.2.0/24"
-    availability_zone = "us-west-2c"
-    tags = {
-        Name = "priv-sub-1"
-    }
-}
-
-resource "aws_subnet" "private-sub-2" {
-    vpc_id = aws_vpc.my-vpc.id
-    cidr_block = "10.0.3.0/24"
-    availability_zone = "us-west-2a"
-    tags = {
-        Name = "priv-sub-2"
+        Name = element(var.priv-subs, count.index).name
     }
 }
 
