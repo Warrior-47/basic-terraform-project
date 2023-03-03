@@ -26,34 +26,14 @@ resource "aws_route_table" "private" {
     ]
 }
 
-resource "aws_route_table_association" "pub1" {
-    subnet_id = aws_subnet.public-sub-1.id
-    route_table_id = aws_route_table.public.id
-    depends_on = [
-      aws_subnet.public-sub-1
-    ]
+resource "aws_route_table_association" "public" {
+    count = length(var.pub-subs)
+	route_table_id = aws_route_table.public.id
+	subnet_id = element(aws_subnet.public-subnets, count.index).id
 }
 
-resource "aws_route_table_association" "pub2" {
-    subnet_id = aws_subnet.public-sub-2.id
-    route_table_id = aws_route_table.public.id
-    depends_on = [
-      aws_subnet.public-sub-2
-    ]
-}
-
-resource "aws_route_table_association" "priv1" {
-    subnet_id = aws_subnet.private-sub-1.id
-    route_table_id = aws_route_table.private.id
-    depends_on = [
-      aws_subnet.private-sub-1
-    ]
-}
-
-resource "aws_route_table_association" "priv2" {
-    subnet_id = aws_subnet.private-sub-2.id
-    route_table_id = aws_route_table.private.id
-    depends_on = [
-      aws_subnet.private-sub-2
-    ]
+resource "aws_route_table_association" "private" {
+    count = length(var.priv-subs)
+	route_table_id = aws_route_table.private.id
+	subnet_id = element(aws_subnet.private-subnets, count.index).id
 }

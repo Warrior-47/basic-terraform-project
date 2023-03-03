@@ -11,7 +11,7 @@ resource "aws_internet_gateway" "igw" {
 
 resource "aws_nat_gateway" "ngw" {
     allocation_id = aws_eip.nat-ip.id
-    subnet_id = aws_subnet.public-sub-1.id
+    subnet_id = aws_subnet.public-subnets[0].id
     depends_on = [
       aws_internet_gateway.igw
     ]
