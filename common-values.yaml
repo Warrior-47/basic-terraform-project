@@ -1,0 +1,7 @@
+# Common values for the myapp Helm chart
+replicas: 3
+image:
+  repository: myapp/repository
+  tag: 1.2.0
+service:
+  port: 8080
