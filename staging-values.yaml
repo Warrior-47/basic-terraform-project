@@ -1,0 +1,6 @@
+# Staging environment specific values
+replicas: 5
+image:
+  tag: 1.2.0-staging
+service:
+  port: 8081
