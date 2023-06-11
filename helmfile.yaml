@@ -1,0 +1,12 @@
+repositories:
+  - name: stable
+    url: https://charts.helm.sh/stable
+
+releases:
+  - name: myapp
+    namespace: myapp-namespace
+    chart: stable/myapp-chart
+    version: 2.0.0
+    values:
+      - common-values.yaml
+      - environments/staging-values.yaml
