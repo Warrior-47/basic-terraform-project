@@ -9,4 +9,4 @@ releases:
     version: 2.0.0
     values:
       - common-values.yaml
-      - environments/staging-values.yaml
+      - staging-values.yaml
