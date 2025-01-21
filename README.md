@@ -1,1 +1,1 @@
-# terraform-assignment
+# Basic Terraform Project
